@@ -7,5 +7,6 @@ const express_1 = __importDefault(require("express"));
 const charactersService_1 = require("../services/charactersService");
 const router = express_1.default.Router();
 router.get('/', charactersService_1.getCharacters);
-router.get('/images', charactersService_1.getImagesByCharacterId);
+router.get('/:characterId', charactersService_1.getCharacterById);
+router.get('/images/:characterId', charactersService_1.getImagesByCharacterId);
 exports.default = router;

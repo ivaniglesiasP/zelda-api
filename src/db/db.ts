@@ -1,11 +1,12 @@
 import { Client } from "pg";
+require('dotenv').config()
 
 const client = new Client({
-  host: "db.flieiqvsbpgufctzipcn.supabase.co",
-  port: 5432,
-  user: "postgres",
-  database: "postgres",
-  password: "l3OwCtZME2MOk35o",
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_PORT),
+  user: process.env.DB_USER,
+  database: process.env.DB,
+  password: process.env.DB_PASSWORD,
 });
 client.connect();
 
