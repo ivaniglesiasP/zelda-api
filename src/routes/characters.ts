@@ -1,10 +1,11 @@
 import express from "express";
-import { getCharacterById, getCharacters, getImagesByCharacterId } from "../services/charactersService";
+import { findCharacterById, getCharacters } from "../services/characterFacade";
+
 
 const router = express.Router();
 
-router.get('/', getCharacters);
-router.get('/:characterId', getCharacterById);
-router.get('/images/:characterId', getImagesByCharacterId);
+router.get('/',getCharacters );
+router.get('/:characterId', findCharacterById);
+router.get('/images/:characterId', );
 
 export default router
