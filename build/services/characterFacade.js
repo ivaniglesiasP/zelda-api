@@ -12,22 +12,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.findCharacterById = exports.getCharacters = void 0;
 const charactersService_1 = require("./charactersService");
 const imagesService_1 = require("./imagesService");
-const getCharacters = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getCharacters = () => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield (0, charactersService_1.allCharacters)();
-    res.json(response.rows);
+    return response.rows;
 });
 exports.getCharacters = getCharacters;
-const findCharacterById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const response = yield (0, charactersService_1.findById)(req.params.characterId);
+const findCharacterById = (id, shouldIncludeImages) => __awaiter(void 0, void 0, void 0, function* () {
+    const response = yield (0, charactersService_1.findById)(id);
     const character = response.rows[0];
-    if (req.query.images) {
-        const imagesQueryResponse = yield (0, imagesService_1.AllImagesByCharacterId)(req.params.characterId);
+    if (shouldIncludeImages) {
+        const imagesQueryResponse = yield (0, imagesService_1.AllImagesByCharacterId)(id);
         const images = imagesQueryResponse.rows;
         const characterWihtImages = Object.assign(Object.assign({}, character), { images: images });
-        res.json(characterWihtImages);
+        return characterWihtImages;
     }
     else {
-        res.json(character);
+        return character;
     }
 });
 exports.findCharacterById = findCharacterById;
