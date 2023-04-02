@@ -2,7 +2,6 @@ export type Character = {
   id: Number;
   name: string;
   title: string;
-  title: string;
   race: string;
   gender: string;
   description: string;
